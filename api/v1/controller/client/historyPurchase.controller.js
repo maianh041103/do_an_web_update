@@ -94,7 +94,7 @@ module.exports.detail = async (req, res) => {
 //[PATCH] /api/v1/historyPurchase/cancel/:orderId
 module.exports.cancel = async (req, res) => {
   try {
-    const orderId = req.params.orderId;
+    const orderId = req.body.orderId != null ? req.body.orderId : req.params.orderId;
     const order = await Order.findOne({
       _id: orderId,
       statusOrder: { $lt: 4 }
